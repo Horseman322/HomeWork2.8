@@ -18,15 +18,27 @@ public class Employee {
 
     private int department;
 
-    private int salary;
+    private double salary;
 
-    public Employee(String name, String secondName) {
+    public Employee(String name,
+                    String secondName,
+                    String thirdName,
+                    int department,
+                    double salary) {
         this.name = name;
         this.secondName = secondName;
         this.thirdName = thirdName;
         this.department = department;
         this.salary = salary;
         this.id = counter++;
+    }
+
+    public void setDepartment(int department) {
+        this.department = department;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
     public Integer getId() {
@@ -49,16 +61,16 @@ public class Employee {
         return department;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setDepartment(int department) {
-        this.department = department;
+    public int setDepartment() {
+        return department;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    public double setSalary() {
+        return salary;
     }
 
     @Override

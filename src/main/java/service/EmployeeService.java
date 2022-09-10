@@ -6,29 +6,27 @@ import com.example.homework28.exception.EmployeeStorageIsFullException;
 import com.example.homework28.model.Employee;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
-public class EmployeeService {
+public class EmployeeService{
 
-    private static final int SIZE = 5;
-    private final List<Employee> employees;
+    private static final int LIMIT = 10;
+    private final Map<String, Employee> employees = new HashMap<>();
+    private String key;
 
-    public EmployeeService() {
-        this.employees = new ArrayList<>();
-
-    }
+    private String getKey(String name, String secondName){return name + "|" + secondName;}
 
     public Employee addEmployee(String name,
-                                String secondName) {
-        Employee employee = new Employee(name, secondName);
+                                String secondName
+                                int department,
+                                double salary) {
+        Employee employee = new Employee(name, secondName, int department, double salary);
         if (employees.contains(employee)) {
             throw new EmployeeAlreadyAddedException();
         }
-        if (employees.size() < SIZE) {
-            employees.add(employee);
+        if (employees.size() < LIMIT) {
+            employees.put(key, employee);
             return employee;
         }
         throw new EmployeeStorageIsFullException();
@@ -55,4 +53,6 @@ public class EmployeeService {
     public List<Employee> getAll(){
         return Collections.unmodifiableList(employees);
     }
+
+
 }
